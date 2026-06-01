@@ -20,6 +20,20 @@ public class ExpenseManager {
     System.out.println("Expense Added Successfully!");
     }
 
+    public void deleteExpense(int id) {
+
+    for (Expense expense : expenses) {
+
+        if (expense.id == id) {
+            expenses.remove(expense);
+            System.out.println("Expense Deleted Successfully!");
+            return;
+        }
+    }
+
+    System.out.println("Expense ID not found!");
+}
+
     public void viewExpenses() {
 
         if (expenses.isEmpty()) {

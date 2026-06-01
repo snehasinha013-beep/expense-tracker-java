@@ -12,7 +12,8 @@ public class Main {
             System.out.println("\n===== Expense Tracker =====");
             System.out.println("1. Add Expense");
             System.out.println("2. View Expenses");
-            System.out.println("3. Exit");
+            System.out.println("3. Delete Expense");
+            System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = sc.nextInt();
@@ -42,6 +43,14 @@ public class Main {
                     break;
 
                 case 3:
+                    System.out.print("Enter Expense ID to delete: ");
+                    int id = sc.nextInt();
+                    
+                    manager.deleteExpense(id);
+                    
+                    break;
+
+                case 4:
                     System.out.println("Thank you for using Expense Tracker!");
                     sc.close();
                     return;

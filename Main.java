@@ -31,12 +31,10 @@ public class Main {
                     System.out.print("Enter Description: ");
                     String description = sc.nextLine();
 
-                    Expense expense = new Expense(
-                            category,
-                            amount,
-                            description);
-
-                    manager.addExpense(expense);
+                    manager.addExpense(
+                    category,
+                    amount,
+                    description);
                     break;
 
                 case 2:

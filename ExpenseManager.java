@@ -2,11 +2,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class ExpenseManager {
 
     ArrayList<Expense> expenses = new ArrayList<>();
     private int nextId = 1;
+
+    public ExpenseManager() {
+    loadExpenses();
+}
 
     public void addExpense(String category, double amount, String description) {
 
@@ -139,6 +146,51 @@ public void viewTotalExpenses() {
 
         System.out.println(
                 "Error saving expenses.");
+    }
+}
+
+public void loadExpenses() {
+
+    try {
+
+        File file = new File("expenses.txt");
+
+        if (!file.exists()) {
+            return;
+        }
+
+        Scanner reader = new Scanner(file);
+
+        while (reader.hasNextLine()) {
+
+            String line = reader.nextLine();
+
+            String[] data = line.split(",");
+
+            int id = Integer.parseInt(data[0]);
+            String category = data[1];
+            double amount = Double.parseDouble(data[2]);
+            String description = data[3];
+
+            Expense expense = new Expense(
+                    id,
+                    category,
+                    amount,
+                    description);
+
+            expenses.add(expense);
+
+            if (id >= nextId) {
+                nextId = id + 1;
+            }
+        }
+
+        reader.close();
+
+    } catch (FileNotFoundException e) {
+
+        System.out.println(
+                "Error loading expenses.");
     }
 }
 }

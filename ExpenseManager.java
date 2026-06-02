@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ExpenseManager {
 
@@ -19,6 +21,7 @@ public class ExpenseManager {
     nextId++;
 
     System.out.println("Expense Added Successfully!");
+    saveExpenses();
     }
 
     public void deleteExpense(int id) {
@@ -28,6 +31,7 @@ public class ExpenseManager {
         if (expense.id == id) {
             expenses.remove(expense);
             System.out.println("Expense Deleted Successfully!");
+            saveExpenses();
             return;
         }
     }
@@ -46,6 +50,7 @@ public void updateExpense(int id, String category, double amount, String descrip
             expense.description = description;
 
             System.out.println("Expense Updated Successfully!");
+            saveExpenses();
             return;
         }
     }
@@ -109,4 +114,31 @@ public void viewTotalExpenses() {
             expense.display();
         }
     }
+
+    public void saveExpenses() {
+
+    try {
+
+        FileWriter writer =
+                new FileWriter("expenses.txt");
+
+        for (Expense expense : expenses) {
+
+            writer.write(
+                    expense.id + "," +
+                    expense.category + "," +
+                    expense.amount + "," +
+                    expense.description + "\n");
+        }
+
+        writer.close();
+
+        System.out.println("Expenses saved successfully!");
+
+    } catch (IOException e) {
+
+        System.out.println(
+                "Error saving expenses.");
+    }
+}
 }

@@ -13,7 +13,8 @@ public class Main {
             System.out.println("1. Add Expense");
             System.out.println("2. View Expenses");
             System.out.println("3. Delete Expense");
-            System.out.println("4. Exit");
+            System.out.println("4. Update Expense");
+            System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = sc.nextInt();
@@ -51,6 +52,29 @@ public class Main {
                     break;
 
                 case 4:
+                    System.out.print("Enter Expense ID to update: ");
+                    int updateId = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Enter New Category: ");
+                    String newCategory = sc.nextLine();
+
+                    System.out.print("Enter New Amount: ");
+                    double newAmount = sc.nextDouble();
+                    sc.nextLine();
+
+                    System.out.print("Enter New Description: ");
+                    String newDescription = sc.nextLine();
+
+                    manager.updateExpense(
+                            updateId,
+                            newCategory,
+                            newAmount,
+                            newDescription);
+
+                    break;
+
+                case 5:
                     System.out.println("Thank you for using Expense Tracker!");
                     sc.close();
                     return;

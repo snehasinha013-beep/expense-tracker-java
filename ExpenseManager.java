@@ -34,6 +34,24 @@ public class ExpenseManager {
     System.out.println("Expense ID not found!");
 }
 
+public void updateExpense(int id, String category, double amount, String description) {
+
+    for (Expense expense : expenses) {
+
+        if (expense.id == id) {
+
+            expense.category = category;
+            expense.amount = amount;
+            expense.description = description;
+
+            System.out.println("Expense Updated Successfully!");
+            return;
+        }
+    }
+
+    System.out.println("Expense ID not found!");
+}
+
     public void viewExpenses() {
 
         if (expenses.isEmpty()) {

@@ -14,7 +14,9 @@ public class Main {
             System.out.println("2. View Expenses");
             System.out.println("3. Delete Expense");
             System.out.println("4. Update Expense");
-            System.out.println("5. Exit");
+            System.out.println("5. View Total Expenses");
+            System.out.println("6. Category-wise Summary");
+            System.out.println("7. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = sc.nextInt();
@@ -75,6 +77,18 @@ public class Main {
                     break;
 
                 case 5:
+
+                    manager.viewTotalExpenses();
+
+                    break;
+
+                case 6:
+
+                    manager.categoryWiseSummary();
+
+                    break;
+
+                case 7:
                     System.out.println("Thank you for using Expense Tracker!");
                     sc.close();
                     return;

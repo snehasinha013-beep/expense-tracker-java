@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ExpenseManager {
 
@@ -50,6 +51,51 @@ public void updateExpense(int id, String category, double amount, String descrip
     }
 
     System.out.println("Expense ID not found!");
+}
+
+public void categoryWiseSummary() {
+
+    HashMap<String, Double> summary = new HashMap<>();
+
+    for (Expense expense : expenses) {
+
+        if (summary.containsKey(expense.category)) {
+
+            double currentAmount =
+                    summary.get(expense.category);
+
+            summary.put(
+                    expense.category,
+                    currentAmount + expense.amount);
+
+        } else {
+
+            summary.put(
+                    expense.category,
+                    expense.amount);
+        }
+    }
+
+    System.out.println("\nCategory-wise Summary");
+
+    for (String category : summary.keySet()) {
+
+        System.out.println(
+                category +
+                ": Rs. " +
+                summary.get(category));
+    }
+}
+
+public void viewTotalExpenses() {
+
+    double total = 0;
+
+    for (Expense expense : expenses) {
+        total += expense.amount;
+    }
+
+    System.out.println("Total Expenses: Rs. " + total);
 }
 
     public void viewExpenses() {
